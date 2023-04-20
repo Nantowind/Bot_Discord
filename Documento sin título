@@ -1,0 +1,33 @@
+Uso y descripción del bot creado
+Este Readme describe el uso del bot creado y las clases involucradas en su funcionamiento.
+
+
+
+
+Clase MyBot
+La clase MyBot es la clase principal que se encarga de la creación y gestión del bot de Discord. Contiene lo siguiente:
+
+Un atributo shardManager de tipo ShardManager que se utilizará para gestionar las conexiones (shards) del bot.
+Un constructor que crea una instancia de DefaultShardManagerBuilder, establece el estado y la actividad del bot, y construye el ShardManager utilizando el token de autenticación de Discord.
+Un método getter getShardManager() que devuelve la instancia de ShardManager.
+El método main, que es el punto de entrada del programa. Aquí, se crea una instancia de la clase MyBot e imprime un mensaje de error si hay un problema con el token de autenticación.
+Clase envData
+
+
+
+La clase envData se encarga de cargar las variables de entorno desde un archivo .env utilizando la biblioteca dotenv. Esta clase contiene lo siguiente:
+
+Un atributo estático dotenv de tipo Dotenv que almacena las variables de entorno cargadas desde el archivo .env.
+Un atributo estático token de tipo String que almacena el token de autenticación de Discord obtenido de la variable de entorno "TOKEN".
+La clase envData se utiliza en la clase MyBot para obtener el token de autenticación de Discord cuando se crea el DefaultShardManagerBuilder.
+Clase EventListener
+
+
+
+
+La clase EventListener se encarga de manejar eventos relacionados con mensajes en Discord. Esta clase extiende la clase ListenerAdapter de JDA y contiene lo siguiente:
+
+Un método onMessageReceived que se activa cada vez que se recibe un mensaje en Discord.
+Este método toma un objeto MessageReceivedEvent como parámetro, el cual contiene información sobre el mensaje recibido y el autor del mensaje.
+Dentro de este método, se verifica si el contenido del mensaje es igual a "ping" (sin distinguir mayúsculas y minúsculas). Si es así, el bot responde con un mensaje "pong" en el mismo canal donde se recibió el mensaje.
+La clase EventListener se registra en la clase MyBot para manejar eventos de mensajes recibidos en Discord. Con este código, el bot es capaz de responder a mensajes que contengan la palabra "ping" enviando un mensaje "pong" en el mismo canal.
